@@ -2375,12 +2375,14 @@
                 top: 0px;
                 left: 0px;
             }
+
             #FRAME81 {
                 background-image: url('/images/11.jpg');
                 background-size: cover;
                 background-position: center;
                 background-repeat: no-repeat;
             }
+
             #FRAME811 {
                 width: 278px;
                 height: 353px;
@@ -2520,12 +2522,14 @@
                 top: 0px;
                 left: 341px;
             }
+
             #FRAME88 {
                 background-image: url('/images/12.jpg');
                 background-size: cover;
                 background-position: center;
                 background-repeat: no-repeat;
             }
+
             #FRAME88>.ladi-frame {
                 box-shadow: 0px 0px 30px -15px rgba(0, 0, 0, 0.2);
                 -webkit-box-shadow: 0px 0px 30px -15px rgba(0, 0, 0, 0.2);
@@ -2644,12 +2648,14 @@
                 top: 0px;
                 left: 682px;
             }
+
             #FRAME95 {
                 background-image: url('/images/13.jpg');
                 background-size: cover;
                 background-position: center;
                 background-repeat: no-repeat;
             }
+
             #FRAME95>.ladi-frame {
                 box-shadow: 0px 0px 30px -15px rgba(0, 0, 0, 0.2);
                 -webkit-box-shadow: 0px 0px 30px -15px rgba(0, 0, 0, 0.2);
@@ -5113,12 +5119,14 @@
                 top: 0px;
                 left: 582px;
             }
+
             #FRAME88 {
                 background-image: url('/images/12.jpg');
                 background-size: cover;
                 background-position: center;
                 background-repeat: no-repeat;
             }
+
             #FRAME88>.ladi-frame {
                 box-shadow: 0px 0px 30px -15px rgba(0, 0, 0, 0.2);
                 -webkit-box-shadow: 0px 0px 30px -15px rgba(0, 0, 0, 0.2);
@@ -5244,12 +5252,14 @@
                 top: 0px;
                 left: 291px;
             }
+
             #FRAME95 {
                 background-image: url('/images/13.jpg');
                 background-size: cover;
                 background-position: center;
                 background-repeat: no-repeat;
             }
+
             #FRAME95>.ladi-frame {
                 box-shadow: 0px 0px 30px -15px rgba(0, 0, 0, 0.2);
                 -webkit-box-shadow: 0px 0px 30px -15px rgba(0, 0, 0, 0.2);
@@ -6806,6 +6816,25 @@
             background-image: none !important;
         }
     </style>
+    <!-- Meta Pixel Code -->
+    <script>
+        !function (f, b, e, v, n, t, s) {
+            if (f.fbq) return; n = f.fbq = function () {
+                n.callMethod ?
+                n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+            };
+            if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
+            n.queue = []; t = b.createElement(e); t.async = !0;
+            t.src = v; s = b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t, s)
+        }(window, document, 'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '1681660549127126');
+        fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+            src="https://www.facebook.com/tr?id=1681660549127126&ev=PageView&noscript=1" /></noscript>
+    <!-- End Meta Pixel Code -->
 </head>
 
 <body class="lazyload"><svg xmlns="http://www.w3.org/2000/svg"
@@ -7131,7 +7160,8 @@
                     <div class='ladi-group'>
                         <div id="HEADLINE8" class='ladi-element'>
                             <h1 class='ladi-headline ladi-transition' style="text-transform: uppercase;">Dung Ho Miranda
-                                <span style="color: rgb(255, 94, 47)">- Ruby Hair Agency in Cali</span> </h1>
+                                <span style="color: rgb(255, 94, 47)">- Ruby Hair Agency in Cali</span>
+                            </h1>
                         </div>
                         <div id="PARAGRAPH9" class='ladi-element'>
                             <div class='ladi-paragraph ladi-transition'>SỞ HỮU NGAY MÁI TÓC DÀY ĐẸP LÀ ĐIỀU MÀ CÁNH CHỊ
@@ -8521,77 +8551,77 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-    const submitButton = document.getElementById('BUTTON161');
-    const form = document.querySelector('.ladi-form');
+        const submitButton = document.getElementById('BUTTON161');
+        const form = document.querySelector('.ladi-form');
 
-    submitButton.addEventListener('click', function (e) {
-        e.preventDefault();
+        submitButton.addEventListener('click', function (e) {
+            e.preventDefault();
 
-        if (!form.checkValidity()) {
-            form.reportValidity();
-            return;
+            if (!form.checkValidity()) {
+                form.reportValidity();
+                return;
+            }
+
+            // Lấy danh sách sản phẩm đã chọn
+            const selectedProducts = Array.from(form.querySelectorAll('input[name="product"]:checked'))
+                .map(checkbox => checkbox.value)
+                .join(', '); // hoặc dùng mảng nếu cần
+
+            const formData = {
+                name: form.querySelector('input[name="name"]').value,
+                phone: form.querySelector('input[name="phone"]').value,
+                address: form.querySelector('input[name="address"]').value,
+                product: selectedProducts, // Sử dụng sản phẩm đã chọn
+                note: form.querySelector('input[name="note"]').value,
+                timestamp: formatDateTime(new Date())
+            };
+
+            submitToGoogleSheets(formData);
+            document.getElementById('closePopupBtn')?.addEventListener('click', closePopup);
+        });
+
+        function formatDateTime(date) {
+            const day = String(date.getDate()).padStart(2, '0');
+            const month = String(date.getMonth() + 1).padStart(2, '0');
+            const year = date.getFullYear();
+            const hours = String(date.getHours()).padStart(2, '0');
+            const minutes = String(date.getMinutes()).padStart(2, '0');
+            const seconds = String(date.getSeconds()).padStart(2, '0');
+
+            return `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`;
         }
 
-        // Lấy danh sách sản phẩm đã chọn
-        const selectedProducts = Array.from(form.querySelectorAll('input[name="product"]:checked'))
-            .map(checkbox => checkbox.value)
-            .join(', '); // hoặc dùng mảng nếu cần
+        function submitToGoogleSheets(data) {
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbyTASJ9EMaF9Lq_rxe9ORx7zZQ4op25oGIy5QByPK7kghp0nlLVYzmi5YWqm7_NtrHT/exec';
 
-        const formData = {
-            name: form.querySelector('input[name="name"]').value,
-            phone: form.querySelector('input[name="phone"]').value,
-            address: form.querySelector('input[name="address"]').value,
-            product: selectedProducts, // Sử dụng sản phẩm đã chọn
-            note: form.querySelector('input[name="note"]').value,
-            timestamp: formatDateTime(new Date())
-        };
-
-        submitToGoogleSheets(formData);
-        document.getElementById('closePopupBtn')?.addEventListener('click', closePopup);
-    });
-
-    function formatDateTime(date) {
-        const day = String(date.getDate()).padStart(2, '0');
-        const month = String(date.getMonth() + 1).padStart(2, '0');
-        const year = date.getFullYear();
-        const hours = String(date.getHours()).padStart(2, '0');
-        const minutes = String(date.getMinutes()).padStart(2, '0');
-        const seconds = String(date.getSeconds()).padStart(2, '0');
-
-        return `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`;
-    }
-
-    function submitToGoogleSheets(data) {
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbyTASJ9EMaF9Lq_rxe9ORx7zZQ4op25oGIy5QByPK7kghp0nlLVYzmi5YWqm7_NtrHT/exec';
-
-        fetch(scriptURL, {
-            method: 'POST',
-            body: JSON.stringify(data),
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            mode: "no-cors"
-        })
-            .then(() => {
-                showPopup();
-                form.reset();
+            fetch(scriptURL, {
+                method: 'POST',
+                body: JSON.stringify(data),
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                mode: "no-cors"
             })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('Có lỗi xảy ra khi đặt hàng. Vui lòng thử lại.');
-            });
-    }
+                .then(() => {
+                    showPopup();
+                    form.reset();
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Có lỗi xảy ra khi đặt hàng. Vui lòng thử lại.');
+                });
+        }
 
-    function showPopup() {
-        const popup = document.getElementById('successPopup');
-        popup.classList.add('active');
-    }
+        function showPopup() {
+            const popup = document.getElementById('successPopup');
+            popup.classList.add('active');
+        }
 
-    function closePopup() {
-        const popup = document.getElementById('successPopup');
-        popup?.classList.remove('active');
-    }
-});
+        function closePopup() {
+            const popup = document.getElementById('successPopup');
+            popup?.classList.remove('active');
+        }
+    });
 
 </script>
 
